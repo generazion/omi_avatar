@@ -1,0 +1,12 @@
+{
+  "TextInput": {
+    "placeholder": "Type something ..."
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "retry": "Try again"
+  },
+  "InteractiveAvatar": {
+    "start": "Start"
+  }
+}
