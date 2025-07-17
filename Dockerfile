@@ -1,5 +1,3 @@
-# Dockerfile for Next.js application
-
 # Stage 1: Install dependencies
 FROM node:20-slim AS deps
 WORKDIR /app
@@ -33,9 +31,11 @@ COPY --from=builder /app/.next/standalone ./
 # Copy the public and static assets
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/static ./.next/static
+# Copy the production environment file
+COPY --from=builder /app/.env.production ./.env.production
 
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Start the app
-CMD ["node", "server.js"]
+# Start the app using dotenv
+CMD ["npx", "dotenv", "-e", ".env.production", "node", "server.js"]
